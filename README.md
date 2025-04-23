@@ -1,2 +1,3 @@
 # Raqamli_Kafedra
-Raqamli texnologiyalar kafedirasi
+Raqamli texnologiyalar kafedirasi to'grisidagi sayt
+
