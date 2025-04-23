@@ -110,8 +110,8 @@
 
 
 	$('.owl-service-item').owlCarousel({
-		items:3,
-		loop:true,
+		items:1,
+		loop:false,
 		dots: true,
 		nav: true,
 		autoplay: true,
@@ -130,8 +130,8 @@
 	  })
 
 	$('.owl-courses-item').owlCarousel({
-		items:4,
-		loop:true,
+		items:1,
+		loop:false,
 		dots: true,
 		nav: true,
 		autoplay: true,

@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import StaffMember, Post, ContactMessage
 
-# Register your models here.
+admin.site.register(StaffMember)
+admin.site.register(Post)
+admin.site.register(ContactMessage)

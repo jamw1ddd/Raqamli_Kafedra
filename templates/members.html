@@ -10,7 +10,7 @@
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>Education Template - Meeting Detail Page</title>
+    <title>Kafedra A'zolari</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
@@ -31,7 +31,7 @@ https://templatemo.com/tm-569-edu-meeting
   </head>
 
 <body>
-
+ 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
     <div class="container">
@@ -39,11 +39,11 @@ https://templatemo.com/tm-569-edu-meeting
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="{%url 'index'%}" class="logo">
+                    <a href="index.html" class="logo">
                       <img src="{% static 'afulogo.png' %}" alt="AFU Kafedra" style="height: 60px;">
                     </a>
-                    <a href="index.html" class="logo">
-                      <span style="background-color: transparent;; font-size: 20px; font-weight: bold;">    AFU Kafedra</span>
+                    <a href="{%url 'index'%}" class="logo">
+                      <span style="background-color: transparent;; font-size: 20px; font-weight: bold;">   AFU Kafedra</span>
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -51,9 +51,12 @@ https://templatemo.com/tm-569-edu-meeting
                         <li><a href="{%url 'index'%}">Bosh sahifa</a></li>
                         <li><a href="{%url 'posts'%}">Yangiliklar</a></li>
                         <li><a href="{%url 'about'%}">Kafedra haqida</a></li>
-                        <li><a href="{%url 'members'%}">Kafedra a'zolari</a></li> 
+                        <li><a href="{%url 'members'%}" class="active">Kafedra a'zolari</a></li> 
                         <li><a href="{% url 'index' %}#contact">Aloqa</a></li>
                     </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
                     <!-- ***** Menu End ***** -->
                 </nav>
             </div>
@@ -66,88 +69,42 @@ https://templatemo.com/tm-569-edu-meeting
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h6>Get all details</h6>
-          <h2>Online Teaching and Learning Tools</h2>
+          <h6>Kafedramiz jamoasi</h6>
+          <h2>Kafedra a'zolari</h2>
         </div>
       </div>
     </div>
   </section>
 
-<section class="meetings-page" id="meetings">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="meeting-single-item">
-              <div class="thumb">
-                <div class="price">
-                  <span>{{ post.category|title }}</span>
-                </div>
-                <div class="date">
-                  <h6>{{ post.date_posted|date:"M" }} <span>{{ post.date_posted|date:"d" }}</span></h6>
-                </div>
-                {% if post.image %}
-                  <a href="#"><img src="{{ post.image.url }}" alt="{{ post.title }}"></a>
-                {% else %}
-                  <a href="#"><img src="{% static 'images/default.jpg' %}" alt="Default Image"></a>
-                {% endif %}
-              </div>
-              <div class="down-content">
-                <h4>{{ post.title }}</h4>
-                <p><strong>Kategoriya:</strong> {{ post.get_category_display }}</p>
-                <p class="description">{{ post.content}}</p>
-
-                <div class="row mt-4">
-                  <div class="col-lg-4">
-                    <div class="hours">
-                      <h5>Vaqti</h5>
-                      <p>Dushanba: 7:00 - 13:00<br>Juma: 09:00 - 15:00</p>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="location">
-                      <h5>Manzil</h5>
-                      <p>Alfraganus Universiteti A bino 103-xona</p> 
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="book now">
-                      <h5>Aloqa</h5>
-                      <p>78-122-75-57<br></p>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="share">
-                      <h5>Kuzatish:</h5>
-                      <ul>
-                        <li><a href="#">Facebook</a>,</li>
-                        <li><a href="#">Twitter</a>,</li>
-                        <li><a href="#">LinkedIn</a>,</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <section class="meetings-page" id="meetings">
+    <div class="container mt-5">
+      <div class="row">
+        {% for member in members %}
+        <div class="col-lg-4 mb-4">
+          <div class="meeting-item">
+            <div class="thumb">
+              {% if member.photo %}
+                <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid">
+              {% else %}
+                <img src="{% static 'images/default.jpg' %}" alt="Default" class="img-fluid">
+              {% endif %}
             </div>
-          </div>
-          <div class="col-lg-12 mt-4">
-            <div class="main-button-red">
-              <a href="{% url 'posts' %}">Yangiliklarga qaytish</a>
+            <div class="down-content text-center">
+              <h4>{{ member.name }}</h4>
+              <p><strong>{{ member.position }}</strong></p>
+              <p>Email: <a href="mailto:{{ member.email }}">{{ member.email }}</a></p>
+              <p>Telefon: {{ member.phone }}</p>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
     </div>
-  </div>
-  <div class="footer mt-4">
-    <p>
-      Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved.
-      <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
-    </p>
-  </div>
-</section>
-
+    <div class="footer">
+        <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved. 
+            <br>Design: <a href="https://templatemo.com/page/1" target="_parent" title="website templates">TemplateMo</a></p>
+      </div>
+  </section>
 
 
   <!-- Scripts -->
